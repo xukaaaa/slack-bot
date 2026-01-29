@@ -1,0 +1,11 @@
+{                                                                                                                                                                                               
+    "name": "slack-bot-vercel",                                                                                                                                                                   
+    "version": "1.0.0",                                                                                                                                                                           
+    "type": "module",                                                                                                                                                                             
+    "scripts": {                                                                                                                                                                                  
+      "dev": "vercel dev"                                                                                                                                                                         
+    },                                                                                                                                                                                            
+    "dependencies": {                                                                                                                                                                             
+      "@slack/web-api": "^7.11.0"                                                                                                                                                                 
+    }                                                                                                                                                                                             
+  }
