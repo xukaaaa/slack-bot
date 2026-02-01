@@ -1,6 +1,7 @@
 import { WebClient } from '@slack/web-api';
 import { getThreadMessages, sendErrorToSlack } from '../lib/slack.js';
 import { callAI } from '../lib/ai.js';
+import { markdownToBlocks } from '../lib/messageFormatter.js';
 
 // Cache để track processed events (tránh duplicate)
 const processedEvents = new Set();
@@ -85,9 +86,11 @@ async function handleMention(event, token, aiApiKey, aiModel) {
 
     // Gửi reply vào thread
     console.log('Sending reply to Slack...');
+    const blocks = markdownToBlocks(aiResponse);
     const result = await client.chat.postMessage({
       channel: channel,
-      text: aiResponse,
+      blocks: blocks.length > 0 ? blocks : undefined,
+      text: aiResponse, // Fallback for clients that don't support blocks
       thread_ts: threadTs
     });
 
