@@ -15,9 +15,13 @@ export default async function handler(req, res) {
   try {
     const data = req.body;
 
+    // Đọc query params
+    const { project_id } = req.query;
+
     // DEBUG
     console.log('Received event:', data.type, data.event?.type);
     console.log('Event ID:', data.event_id);
+    console.log('Query params - project_id:', project_id);
     console.log('Has token?', !!process.env.SLACK_BOT_TOKEN);
     console.log('Has AI key?', !!process.env.AI_API_KEY);
 
